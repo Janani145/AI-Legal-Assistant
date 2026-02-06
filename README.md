@@ -4,7 +4,7 @@ A **GenAI-inspired Legal Contract Analysis System** designed to help **Small and
 
 ---
 
-## 🚀 Features
+## ✨ Features
 
 ### 🔍 Core Legal NLP Capabilities
 - Contract type classification  
@@ -13,16 +13,22 @@ A **GenAI-inspired Legal Contract Analysis System** designed to help **Small and
 - Risk scoring (Clause-level & Contract-level)  
 - Unfavorable clause identification  
 
+---
+
 ### 🧠 Advanced Analysis
 - Plain-English clause explanations  
 - SME-friendly renegotiation suggestions  
 - Executive summary generation  
 - Clause similarity & pattern heuristics  
 
+---
+
 ### 🌐 Multilingual Support
 - English & Hindi contract handling  
 - Offline Hindi → English normalization  
 - Mixed-language document support  
+
+---
 
 ### 🧾 Named Entity Recognition (NER)
 - Parties  
@@ -31,22 +37,28 @@ A **GenAI-inspired Legal Contract Analysis System** designed to help **Small and
 - Locations & jurisdiction  
 - Percentages  
 
-### 🖥️ Modern User Interface
-- Dark, SaaS-style UI (Streamlit)
-- Tab-based navigation
-- Risk badges & cards
-- Chat-based contract assistant
-- Styled PDF report download
+---
 
-### 🔒 Privacy & Compliance
-- 100% local processing
-- No external APIs
-- Confidential audit logs
-- No legal advice disclaimer
+### 🖥️ Modern User Interface
+- Dark SaaS-style UI (Streamlit)  
+- Tab-based navigation  
+- Risk badges & summary cards  
+- Chat-based contract assistant  
+- Styled PDF report download  
 
 ---
 
-## 🧱 Project Structure
+### 🔒 Privacy & Compliance
+- 100% local processing  
+- No external APIs  
+- Confidential audit logs  
+- No legal advice disclaimer  
+
+---
+
+## 📁 Project Structure
+
+```text
 legal_genai_assistant/
 │
 ├── app.py                      # Streamlit UI
@@ -71,4 +83,3 @@ legal_genai_assistant/
 │
 ├── requirements.txt
 └── README.md
-

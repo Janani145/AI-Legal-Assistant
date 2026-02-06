@@ -1,77 +1,95 @@
 # backend/ner_extractor.py
-# Phase 4: Named Entity Recognition (NER)
-# SME-focused entities, no external legal DBs
+# Cloud-safe Legal NER (spaCy optional, regex primary)
 
 import re
-import spacy
 from typing import Dict, List
 
-def load_spacy_model():
-    try:
-        return spacy.load("en_core_web_sm")
-    except OSError:
-        # Fallback: blank English pipeline (NER via regex still works)
-        nlp = spacy.blank("en")
-        return nlp
+# -------------------------------------------------
+# REGEX PATTERNS (PRIMARY – ALWAYS WORKS)
+# -------------------------------------------------
 
-nlp = load_spacy_model()
-
-# -------------------------------
-# Custom Regex for Legal Entities
-# -------------------------------
-
-MONEY_REGEX = r"(₹|\$|rs\.?)\s?\d+(?:,\d+)*(?:\.\d+)?"
 DATE_REGEX = r"\b\d{1,2}[/-]\d{1,2}[/-]\d{2,4}\b"
-PERCENT_REGEX = r"\b\d{1,2}%\b"
+MONEY_REGEX = r"(₹|\$|rs\.?)\s?\d+(?:,\d+)*(?:\.\d+)?"
+PERCENT_REGEX = r"\b\d{1,3}%\b"
 
-JURISDICTION_KEYWORDS = [
-    "india", "tamil nadu", "karnataka",
-    "delhi", "mumbai", "chennai",
-    "jurisdiction", "courts at"
+ORG_HINTS = [
+    "pvt", "private limited", "ltd", "limited",
+    "solutions", "technologies", "enterprises",
+    "company", "firm"
 ]
 
-# -------------------------------
-# Core NER Function
-# -------------------------------
+JURISDICTION_HINTS = [
+    "courts at", "jurisdiction", "governed by",
+    "india", "tamil nadu", "karnataka",
+    "chennai", "bengaluru", "bangalore",
+    "mumbai", "delhi"
+]
+
+# -------------------------------------------------
+# OPTIONAL spaCy (ONLY IF AVAILABLE)
+# -------------------------------------------------
+
+def load_spacy():
+    try:
+        import spacy
+        return spacy.load("en_core_web_sm")
+    except Exception:
+        return None
+
+nlp = load_spacy()
+
+# -------------------------------------------------
+# MAIN ENTITY EXTRACTION
+# -------------------------------------------------
 
 def extract_entities(text: str) -> Dict[str, List[str]]:
-    doc = nlp(text)
-
     entities = {
         "Parties": set(),
         "Dates": set(),
         "Money": set(),
-        "Locations": set(),
         "Percentages": set(),
         "Jurisdiction": set(),
     }
 
-    # spaCy entities
-    for ent in doc.ents:
-        if ent.label_ == "ORG":
-            entities["Parties"].add(ent.text)
-        elif ent.label_ == "DATE":
-            entities["Dates"].add(ent.text)
-        elif ent.label_ in ("GPE", "LOC"):
-            entities["Locations"].add(ent.text)
-        elif ent.label_ == "MONEY":
-            entities["Money"].add(ent.text)
+    lower = text.lower()
 
-    # Regex-based (legal docs are messy)
-    for m in re.findall(MONEY_REGEX, text, flags=re.IGNORECASE):
-        entities["Money"].add(m)
+    # -------- REGEX BASED (ALWAYS WORKS) --------
 
     for d in re.findall(DATE_REGEX, text):
         entities["Dates"].add(d)
 
+    for m in re.findall(MONEY_REGEX, text, flags=re.IGNORECASE):
+        entities["Money"].add(m)
+
     for p in re.findall(PERCENT_REGEX, text):
         entities["Percentages"].add(p)
 
-    lower = text.lower()
-    for j in JURISDICTION_KEYWORDS:
+    for j in JURISDICTION_HINTS:
         if j in lower:
             entities["Jurisdiction"].add(j.title())
 
-    # Convert sets → lists
-    return {k: sorted(list(v)) for k, v in entities.items()}
+    # -------- HEURISTIC PARTY DETECTION --------
 
+    lines = text.splitlines()
+    for line in lines:
+        l = line.lower()
+        if any(h in l for h in ORG_HINTS):
+            clean = line.strip()
+            if len(clean) < 120:
+                entities["Parties"].add(clean)
+
+    # -------- spaCy (ENHANCEMENT ONLY) --------
+
+    if nlp:
+        doc = nlp(text)
+        for ent in doc.ents:
+            if ent.label_ == "ORG":
+                entities["Parties"].add(ent.text)
+            elif ent.label_ == "GPE":
+                entities["Jurisdiction"].add(ent.text)
+            elif ent.label_ == "DATE":
+                entities["Dates"].add(ent.text)
+            elif ent.label_ == "MONEY":
+                entities["Money"].add(ent.text)
+
+    return {k: sorted(v) for k, v in entities.items()}

@@ -1,0 +1,98 @@
+VENDOR SERVICE AGREEMENT
+
+(विक्रेता सेवा अनुबंध)
+
+This Vendor Service Agreement (“Agreement”) is made on 15/08/2024
+(यह अनुबंध दिनांक 15/08/2024 को किया गया)
+
+1. Parties (पक्षकार)
+
+This Agreement is entered into between:
+
+ABC Technologies Private Limited,
+having its registered office at Chennai, Tamil Nadu, India
+(जिसे आगे “Company” कहा जाएगा)
+
+AND
+
+Ravi Kumar, Proprietor of RK Solutions,
+having its office at Madurai, Tamil Nadu, India
+(जिसे आगे “Vendor” कहा जाएगा)
+
+2. Scope of Services (सेवाओं का दायरा)
+
+The Vendor shall provide software development and technical support services
+to the Company as per mutually agreed requirements.
+
+विक्रेता कंपनी को सॉफ्टवेयर विकास एवं तकनीकी सहायता सेवाएँ प्रदान करेगा
+जैसा कि दोनों पक्षों द्वारा सहमति से तय किया जाएगा।
+
+3. Payment Terms (भुगतान शर्तें)
+
+The Company shall pay the Vendor a sum of ₹2,50,000 (Rupees Two Lakh Fifty Thousand)
+within 45 days from the date of invoice submission.
+
+यदि कंपनी किसी कारणवश भुगतान में देरी करती है,
+तो Vendor को कोई ब्याज या अतिरिक्त शुल्क का अधिकार नहीं होगा।
+
+4. Term and Termination (अवधि और समाप्ति)
+
+This Agreement shall be valid for a period of 12 months
+from the effective date.
+
+The Company may terminate this Agreement at any time without notice
+and without assigning any reason.
+
+कंपनी बिना किसी पूर्व सूचना के
+किसी भी समय इस अनुबंध को समाप्त कर सकती है।
+
+5. Confidentiality (गोपनीयता)
+
+The Vendor shall keep all confidential information strictly confidential
+and shall not disclose the same to any third party.
+
+विक्रेता किसी भी गोपनीय जानकारी को
+किसी तीसरे पक्ष को प्रकट नहीं करेगा।
+
+6. Indemnity and Liability (क्षतिपूर्ति और दायित्व)
+
+The Vendor agrees to indemnify and hold harmless the Company
+against all losses, damages, claims, and legal expenses
+arising out of the services, including Company’s negligence.
+
+यह क्षतिपूर्ति अनुबंध की समाप्ति के बाद भी लागू रहेगी।
+
+7. Intellectual Property Rights (बौद्धिक संपदा अधिकार)
+
+All deliverables, source code, and work products created by the Vendor
+shall be the sole and exclusive property of the Company in perpetuity.
+
+Vendor किसी भी कार्य पर भविष्य में
+कोई अधिकार या दावा नहीं करेगा।
+
+8. Non-Compete (प्रतिस्पर्धा निषेध)
+
+The Vendor shall not engage in any competing business
+for a period of 2 years after termination of this Agreement
+within India.
+
+यह प्रतिबंध अनुबंध समाप्त होने के बाद भी लागू रहेगा।
+
+9. Governing Law and Jurisdiction (कानून और क्षेत्राधिकार)
+
+This Agreement shall be governed by the laws of India.
+The courts at Chennai, Tamil Nadu shall have exclusive jurisdiction.
+
+10. Entire Agreement (पूर्ण अनुबंध)
+
+This Agreement constitutes the entire understanding
+between the parties and supersedes all prior discussions.
+
+IN WITNESS WHEREOF, the parties have executed this Agreement
+on the date first written above.
+
+For ABC Technologies Pvt. Ltd.
+Authorized Signatory
+
+For RK Solutions
+Vendor

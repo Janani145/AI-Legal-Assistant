@@ -6,7 +6,15 @@ import re
 import spacy
 from typing import Dict, List
 
-nlp = spacy.load("en_core_web_sm")
+def load_spacy_model():
+    try:
+        return spacy.load("en_core_web_sm")
+    except OSError:
+        # Fallback: blank English pipeline (NER via regex still works)
+        nlp = spacy.blank("en")
+        return nlp
+
+nlp = load_spacy_model()
 
 # -------------------------------
 # Custom Regex for Legal Entities
@@ -66,3 +74,4 @@ def extract_entities(text: str) -> Dict[str, List[str]]:
 
     # Convert sets → lists
     return {k: sorted(list(v)) for k, v in entities.items()}
+
